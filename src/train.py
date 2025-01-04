@@ -2,7 +2,7 @@ import math
 import numpy as np
 from copy import deepcopy
 from env_hiv import HIVPatient  
-from tqdm import tqdm
+#from tqdm import tqdm
 from interface import Agent 
 from gymnasium.wrappers import TimeLimit
 from evaluate import evaluate_agent
@@ -48,7 +48,8 @@ class MCTS:
         best_reward = 0
         time_best_reward = 0
         root = TreeNode(initial_state)
-        for episode in tqdm(range(simulations)):
+        #for episode in tqdm(range(simulations)):
+        for episode in range(simulations):
             node = root
             actions = []
             reward_episode = 0
@@ -186,7 +187,8 @@ class ProjectAgent(Agent):
 
 def train_agent(env, agent, nb_episode=1000, target_update_freq=10):
     total_rewards = []
-    for episode in tqdm(range(nb_episode), desc="Training Episodes"):
+    #for episode in tqdm(range(nb_episode), desc="Training Episodes"):
+    for episode in range(nb_episode):
         env.domain_randomization = episode % 3 == 0
         state, _ = env.reset()
         total_reward = 0
